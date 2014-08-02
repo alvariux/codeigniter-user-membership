@@ -1,25 +1,35 @@
 <?php
-
 $this->load->view('membership/header');
-
 ?>
 
+<?php
+$this->load->view('membership/menu');
+?>
 
+<br/><br/>
 
-<?php echo form_open('membership/save_role',array('id'=>'userform','name'=>'userform')); ?>
+<div class="container" role="main">
 
-<fieldset>
-<legend>Edit user</legend>
+	<h1>Roles</h1>
 
-<p>
-<label for="name">Name</label><input type="text" name="name" value="<?php echo $role_data[0]->name ?>">
-</p>
+	<div class="row">
 
-</fiedlset>
-<input type="hidden" name="role_id" value="<?php echo $role_data[0]->id ?>">
-<input type="submit" name="sent" value="Accept">
+		<div class="col-md-12">
 
-</form>
+			<?php echo form_open('membership/save_role',array('id'=>'userform','name'=>'userform')); ?>
+
+			<div class="form-group">
+				<label for="name">Name</label>
+				<input class="form-control" type="text" name="name" id="name" value="<?php echo $role_data[0]->name ?>">
+			</div>
+			
+			<input type="hidden" name="role_id" value="<?php echo $role_data[0]->id ?>">
+			<input class="btn btn-primary" type="submit" name="sent" value="Accept">
+
+			</form>
+		</div>
+	</div>
+</div>
 
 <?php
 $this->load->view('membership/footer');

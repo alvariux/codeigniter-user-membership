@@ -4,21 +4,33 @@ $this->load->view('membership/header');
 
 ?>
 
+<?php
+$this->load->view('membership/menu');
+?>
 
 
-<?php echo form_open('membership/add_role',array('id'=>'userform','name'=>'userform')); ?>
+<br/><br/>
 
-<fieldset>
-<legend>Add role</legend>
+<div class="container" role="main">
 
-<p>
-<label for="name">Name</label><input type="text" name="name" value="">
-</p>
+	<h1>Roles</h1>
 
-</fiedlset>
-<input type="submit" name="sent" value="Accept">
+	<div class="row">
+		<div class="col-md-12">
 
-</form>
+			<?php echo form_open('membership/add_role',array('id'=>'userform','name'=>'userform','role'=>'form')); ?>
+
+			<div class="form-group">
+				<label for="name">Name</label>
+				<input class="form-control" type="text" name="name" id="name" value="">
+			</div>
+
+			<input class="btn btn-primary" type="submit" name="sent" value="Accept">
+
+			</form>
+		</div>
+	</div>
+</div>
 
 <?php
 $this->load->view('membership/footer');

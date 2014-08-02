@@ -1,13 +1,30 @@
 <?php
 $this->load->view('membership/header');
-
 ?>
-<a href="<?php echo $this->config->item('base_url');?>index.php/membership">Home</a>
-<br><br>
+
 
 <?php
+$this->load->view('membership/menu');
+?>
 
-echo $message;
 
+<br/><br/><br/><br/>
+
+<div class="container" role="main">	
+
+	<div class="row">
+		<div class="col-md-12">
+
+			<?php
+
+			echo $message;
+			?>
+
+		</div>
+	</div>
+</div>
+
+
+<?php
 $this->load->view('membership/footer');
 ?>

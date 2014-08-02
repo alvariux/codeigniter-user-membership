@@ -86,15 +86,11 @@ class User_membership
 	{
 		if(!empty($user_id) && count($user_data)>0)
 		{
-			$found_user=$this->find_username($user_data['username']);
-		
-			if($found_user)
-			{		
-				$this->CI->db->where('id', $user_id);
-				$result=$this->CI->db->update('app_users',$user_data);
+					
+			$this->CI->db->where('id', $user_id);
+			$result=$this->CI->db->update('app_users',$user_data);
 			
-				return $result;
-			}
+			return $result;
 		}
 		
 		return false;
@@ -479,11 +475,11 @@ class User_membership
 				return $result;
 			}
 	 		else{
-	 			return false;
+	 			return array();
 	 		}
 	 	}
 
-	 	return false;
+	 	return array();
 	 }//function
 	 
 	 

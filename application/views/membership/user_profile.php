@@ -1,44 +1,57 @@
 <?php
-
 $this->load->view('membership/header');
+?>
 
+<?php
+$this->load->view('membership/menu');
 ?>
 
 
-<?php echo form_open('membership/profile_user',array('id'=>'userform','name'=>'userform')); ?>
-<fieldset>
-<legend>Profile</legend>
+<br/><br/>
 
-<p>
-<label for="address">Addres</label><input type="text" name="address" value="<?php echo $user_profile[0]->address;?>">
-</p>
+<div class="container" role="main">
 
+	<h1>Users</h1>
 
-<p>
-<label for="city">City</label><input type="text" name="city" value="<?php echo $user_profile[0]->city;?>">
-</p>
+	<div class="row">
+		<div class="col-md-12">
 
+			<?php echo form_open('membership/profile_user',array('id'=>'userform','name'=>'userform','role'=>'form')); ?>
+		
+			<div class="form-group">
+			<label for="address">Addres</label>
+			<input class="form-control"  type="text" name="address" value="<?php echo $user_profile[0]->address;?>">
+			</div>
+			
 
-<p>
-<label for="state">Sate</label><input type="text" name="state" value="<?php echo $user_profile[0]->state;?>">
-</p>
+			<div class="form-group">
+			<label for="city">City</label>
+			<input class="form-control" type="text" name="city" value="<?php echo $user_profile[0]->city;?>">
+			</div>
+			
 
-<p>
-<label for="phone">Phone</label><input type="text" name="phone" value="<?php echo $user_profile[0]->phone;?>">
-</p>
+			<div class="form-group">
+			<label for="state">Sate</label>
+			<input class="form-control" type="text" name="state" value="<?php echo $user_profile[0]->state;?>">
+			</div>
+			
+			<div class="form-group">
+			<label for="phone">Phone</label>
+			<input class="form-control" type="text" name="phone" value="<?php echo $user_profile[0]->phone;?>">
+			</div>
+			
 
+			<div class="form-group">
+			<label for="mobile">Mobile</label>
+			<input class="form-control" type="text" name="mobile" value="<?php echo $user_profile[0]->mobile;?>">
+			</div>
+					
+			<input type="hidden" name="user_id" value="<?php echo $user_profile[0]->user_id ?>">
+			<input class="btn btn-primary" type="submit" name="sent" value="Accept">
 
-<p>
-<label for="mobile">Mobile</label><input type="text" name="mobile" value="<?php echo $user_profile[0]->mobile;?>">
-</p>
-
-
-</fiedlset>
-<input type="hidden" name="user_id" value="<?php echo $user_profile[0]->user_id ?>">
-<input type="submit" name="sent" value="Accept">
-
-</form>
-
+			</form>
+		</div>
+	</div>
 
 <?php
 $this->load->view('membership/footer');

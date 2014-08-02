@@ -11,6 +11,14 @@ class Membership extends CI_Controller {
 	
 	public function index()
 	{
+		$this->load->library('User_membership');
+		$user_id=$this->session->userdata('app_membership_id');
+
+		if(empty($user_id))
+		{
+			redirect('membership/login');
+		}
+
 		$this->load->view('membership/index');
 	}
 	
@@ -48,6 +56,19 @@ class Membership extends CI_Controller {
 	public function users()
 	{
 		$this->load->library('User_membership');
+		$user_id=$this->session->userdata('app_membership_id');
+
+		//die($user_id);
+
+		if(empty($user_id))
+		{
+			redirect('membership/login');
+		}
+
+		if(!$this->user_membership->user_has_role($user_id,'admin'))
+		{
+			redirect('membership/login');
+		}
 		
 		$data=array();
 		
@@ -59,6 +80,20 @@ class Membership extends CI_Controller {
 	public function add_user()
 	{
 		$this->load->library('User_membership');
+
+		$user_id=$this->session->userdata('app_membership_id');
+
+
+		if(empty($user_id))
+		{
+			redirect('membership/login');
+		}
+
+		if(!$this->user_membership->user_has_role($user_id,'admin'))
+		{
+			redirect('membership/login');
+		}
+
 		
 		$sent=$this->input->post('sent');
 		if(!empty($sent))
@@ -67,7 +102,7 @@ class Membership extends CI_Controller {
 			$data['firstname']=$this->input->post('firstname');
 			$data['lastname']=$this->input->post('lastname');
 			$data['username']=$this->input->post('username');
-			$data['password']=$this->input->post('password');
+			$data['password']=md5($this->input->post('password'));
 			$data['email']=$this->input->post('email');
 			
 			$this->user_membership->create_user($data);
@@ -81,6 +116,20 @@ class Membership extends CI_Controller {
 	public function edit_user($user_id=0)
 	{
 		$this->load->library('User_membership');
+
+		$user_id=$this->session->userdata('app_membership_id');
+
+
+		if(empty($user_id))
+		{
+			redirect('membership/login');
+		}
+
+		if(!$this->user_membership->user_has_role($user_id,'admin'))
+		{
+			redirect('membership/login');
+		}
+
 		if(!empty($user_id))
 		{	
 			$data=array();
@@ -113,13 +162,20 @@ class Membership extends CI_Controller {
 	public function change_password($user_id)
 	{
 		$this->load->library('User_membership');
+
+		$myuser_id=$this->session->userdata('app_membership_id');
+
+		if(empty($myuser_id))
+		{
+			redirect('membership/login');
+		}
 		
 		$sent=$this->input->post('sent');
 		if(!empty($sent))
 		{
 			$user_id=$this->input->post('user_id');
 			$user_data=array();
-			$user_data['password']=$this->input->post('password');
+			$user_data['password']=md5($this->input->post('password'));
 
 			$this->user_membership->update_user($user_id,$user_data);
 			
@@ -136,6 +192,20 @@ class Membership extends CI_Controller {
 	public function delete_user($user_id)
 	{
 		$this->load->library('User_membership');
+
+		$myuser_id=$this->session->userdata('app_membership_id');
+
+
+		if(empty($myuser_id))
+		{
+			redirect('membership/login');
+		}
+
+		if(!$this->user_membership->user_has_role($myuser_id,'admin'))
+		{
+			redirect('membership/login');
+		}
+
 		if(!empty($user_id))
 		{
 			$this->user_membership->delete_user($user_id);
@@ -147,6 +217,19 @@ class Membership extends CI_Controller {
 	public function profile_user($user_id)
 	{
 		$this->load->library('User_membership');
+
+		$myuser_id=$this->session->userdata('app_membership_id');
+
+
+		if(empty($myuser_id))
+		{
+			redirect('membership/login');
+		}
+
+		if(!$this->user_membership->user_has_role($myuser_id,'admin'))
+		{
+			redirect('membership/login');
+		}
 		
 		$sent=$this->input->post('sent');
 		if(!empty($sent))
@@ -229,6 +312,19 @@ class Membership extends CI_Controller {
 	public function roles()
 	{
 		$this->load->library('User_membership');
+
+		$user_id=$this->session->userdata('app_membership_id');
+
+
+		if(empty($user_id))
+		{
+			redirect('membership/login');
+		}
+
+		if(!$this->user_membership->user_has_role($user_id,'admin'))
+		{
+			redirect('membership/login');
+		}
 		
 		$data=array();
 		
@@ -240,6 +336,19 @@ class Membership extends CI_Controller {
 	public function add_role()
 	{
 		$this->load->library('User_membership');
+
+		$user_id=$this->session->userdata('app_membership_id');
+
+
+		if(empty($user_id))
+		{
+			redirect('membership/login');
+		}
+
+		if(!$this->user_membership->user_has_role($user_id,'admin'))
+		{
+			redirect('membership/login');
+		}
 		
 		$sent=$this->input->post('sent');
 		if(!empty($sent))
@@ -258,6 +367,20 @@ class Membership extends CI_Controller {
 	public function edit_role($role_id=0)
 	{
 		$this->load->library('User_membership');
+
+		$user_id=$this->session->userdata('app_membership_id');
+
+
+		if(empty($user_id))
+		{
+			redirect('membership/login');
+		}
+
+		if(!$this->user_membership->user_has_role($user_id,'admin'))
+		{
+			redirect('membership/login');
+		}
+
 		if(!empty($role_id))
 		{	
 			$data=array();
@@ -269,6 +392,19 @@ class Membership extends CI_Controller {
 	public function save_role()
 	{
 		$this->load->library('User_membership');
+
+		$user_id=$this->session->userdata('app_membership_id');
+
+
+		if(empty($user_id))
+		{
+			redirect('membership/login');
+		}
+
+		if(!$this->user_membership->user_has_role($user_id,'admin'))
+		{
+			redirect('membership/login');
+		}
 		
 		$sent=$this->input->post("sent");
 		$role_id=$this->input->post("role_id");
@@ -288,6 +424,20 @@ class Membership extends CI_Controller {
 	public function delete_role($role_id)
 	{
 		$this->load->library('User_membership');
+
+		$user_id=$this->session->userdata('app_membership_id');
+
+
+		if(empty($user_id))
+		{
+			redirect('membership/login');
+		}
+
+		if(!$this->user_membership->user_has_role($user_id,'admin'))
+		{
+			redirect('membership/login');
+		}
+
 		if(!empty($role_id))
 		{
 			$this->user_membership->delete_role($role_id);
@@ -296,10 +446,20 @@ class Membership extends CI_Controller {
 		redirect('membership/roles');
 	}
 	
-	public function user_roles()
+	public function user_roles($user_id=0)
 	{
 		$this->load->library('User_membership');
-		$user_id=$this->session->userdata('app_membership_id');
+		$myuser_id=$this->session->userdata('app_membership_id');
+
+		if(empty($myuser_id))
+		{
+			redirect('membership/login');
+		}
+
+		if(!$this->user_membership->user_has_role($myuser_id,'admin'))
+		{
+			redirect('membership/login');
+		}
 		
 		if(!empty($user_id))
 		{
@@ -315,6 +475,19 @@ class Membership extends CI_Controller {
 	public function add_user_role()
 	{
 		$this->load->library('User_membership');
+
+		$user_id=$this->session->userdata('app_membership_id');
+
+
+		if(empty($user_id))
+		{
+			redirect('membership/login');
+		}
+
+		if(!$this->user_membership->user_has_role($user_id,'admin'))
+		{
+			redirect('membership/login');
+		}
 		
 		$sent=$this->input->post('sent');
 		if(!empty($sent))
@@ -333,6 +506,19 @@ class Membership extends CI_Controller {
 	public function delete_user_role($user_id=0,$role_id=0)
 	{
 		$this->load->library('User_membership');
+
+		$myuser_id=$this->session->userdata('app_membership_id');
+
+
+		if(empty($myuser_id))
+		{
+			redirect('membership/login');
+		}
+
+		if(!$this->user_membership->user_has_role($myuser_id,'admin'))
+		{
+			redirect('membership/login');
+		}
 		
 		if(!empty($user_id) && !empty($role_id))
 		{

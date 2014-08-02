@@ -2,23 +2,21 @@
 $this->load->view('membership/header');
 ?>
 
-<?php echo form_open('membership/login',array('id'=>'userform','name'=>'userform')); ?>
+<?php echo form_open('membership/login',array('id'=>'userform','name'=>'userform','class'=>'form-signin','role'=>'form')); ?>
 
-<fieldset>
-<legend>Sign in</legend>
-<p>
-<label for="username">User</label><input type="text" name="username" >
-</p>
+<div class="row">
 
-<p>
-<label for="password">Password</label><input type="password" name="password" >
-</p>
+	<div class="col-lg-6 col-lg-offset-3">
 
-</fieldset>
+		<h2>Please sign in</h2>
 
-<input type="submit" name="sent" value="Sign in">
+		<input type="text" name="username" class="form-control" placeholder="Username" required autofocus />
+		<input type="password" name="password" class="form-control" placeholder="Password" required />
+		<input name="sent" class="btn btn-lg btn-primary btn-block" type="submit" value="Sign in" />
+		</form>
+	</div>
 
-</form>
+</div>
 
 <?php
 $this->load->view('membership/footer');
